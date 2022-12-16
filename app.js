@@ -32,6 +32,8 @@ app.use("/assets", express.static(path.join(__dirname, 'publics/assets')));
 
 // file storage
 const upload = multer({ storage });
+// route with files
+app.post("/auth/register", upload.single("picture"), register);
 
 
 const PORT = process.env.PORT || 5000;
