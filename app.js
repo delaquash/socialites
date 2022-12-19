@@ -11,6 +11,7 @@ import authRoutes from './routes/auth.js';
 import connectDB from "./config/connectDB.js";
 import storage from "./config/storage.js";
 import { register } from "./controllers/Auth.js";
+import { verifyToken } from "./middleware/auth.js";
 
 // config
 dotenv.config()
@@ -32,13 +33,12 @@ app.use("/assets", express.static(path.join(__dirname, 'publics/assets')));
 
 // file storage
 const upload = multer({ storage });
+
 // route with files
 app.post("/auth/register", upload.single("picture"), register);
 
-
 // routes
 app.use("/auth", authRoutes);
-
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
