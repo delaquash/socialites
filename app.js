@@ -7,10 +7,10 @@ import morgan from "morgan";
 import multer from "multer";
 import path from "path";
 import { fileURLToPath } from "url";
+import authRoutes from './routes/auth.js';
 import connectDB from "./config/connectDB.js";
 import storage from "./config/storage.js";
-
-
+import { register } from "./controllers/Auth.js";
 
 // config
 dotenv.config()
@@ -34,6 +34,10 @@ app.use("/assets", express.static(path.join(__dirname, 'publics/assets')));
 const upload = multer({ storage });
 // route with files
 app.post("/auth/register", upload.single("picture"), register);
+
+
+// routes
+app.use("/auth", authRoutes);
 
 
 const PORT = process.env.PORT || 5000;
