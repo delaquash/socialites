@@ -8,9 +8,12 @@ import multer from "multer";
 import path from "path";
 import { fileURLToPath } from "url";
 import authRoutes from './routes/auth.js';
+import userRoutes from './routes/user.js';
+import postRoutes from './routes/post.js';
 import connectDB from "./config/connectDB.js";
 import storage from "./config/storage.js";
 import { register } from "./controllers/Auth.js";
+import { createPost } from "./controllers/post.js"
 import { verifyToken } from "./middleware/auth.js";
 
 // config
@@ -36,9 +39,13 @@ const upload = multer({ storage });
 
 // route with files
 app.post("/auth/register", upload.single("picture"), register);
+app.post("/post", verifyToken, upload.single("picture"), createPost)
 
 // routes
-app.use("/auth", authRoutes);
+app.use("/auths", authRoutes);
+app.use("/users", userRoutes);
+app.use("/routes", postRoutes);
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
