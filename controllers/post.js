@@ -18,7 +18,7 @@ export const createPost = async(req, res) => {
         })
         await newPost.save();
         const post = await Post.find();
-        res.status(201).json(post)
+        res.status(201).json(post);
     } catch (error) {
         res.status(409).json({ message: error.message })
     }
@@ -32,6 +32,13 @@ export const getUserPost = async(req, res) => {
 
 }
 
-export const getFeedPost = async(req, res) => {
 
+// read post
+export const getFeedPost = async(req, res) => {
+    try {
+        const post = await Post.find()
+        res.status(201).json(post)
+    } catch (error) {
+        res.status(409).json({ message: error.message })
+    }
 }
