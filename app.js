@@ -15,6 +15,9 @@ import storage from "./config/storage.js";
 import { register } from "./controllers/Auth.js";
 import { createPost } from "./controllers/post.js"
 import { verifyToken } from "./middleware/auth.js";
+import User from "./model/User.js";
+import Post from "./model/Post.js";
+import { posts, users } from "./data/index.js";
 
 // config
 dotenv.config()
@@ -46,6 +49,9 @@ app.use("/auths", authRoutes);
 app.use("/users", userRoutes);
 app.use("/routes", postRoutes);
 
+// ADD DATA ONE TIME
+// User.insertMany(users)
+// Post.insertMany(posts)
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
