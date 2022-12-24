@@ -4,7 +4,7 @@ interface State {
     mode: string,
     user:  any,
     token: string | null,
-    posts: []
+    posts: any[]
 }
 
 const initialState:State= {
@@ -40,10 +40,16 @@ export const authSlice = createSlice({
         setPosts: (state, action) => {
             state.posts = action.payload.post
         },
-        // setPost: (state, action)=> {
-        //     const updatedPost = state.posts.map((post) => {
-        //         if(post._id ===)
-        //     })
-        // }
+        setPost: (state, action)=> {
+            const updatedPost = state.posts.map((post: any) => {
+                if(post._id ===action.payload._id) return action.payload.post
+                return post
+            })
+            state.posts = updatedPost
+        }
     }
 })
+
+export const { setPost, setPosts, setFriends, setLogout, setLogin, setMode } = authSlice.actions;
+
+export default authSlice.reducer;
