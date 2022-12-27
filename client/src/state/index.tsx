@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from './store';
 
 interface State {
     mode: string,
@@ -7,13 +8,12 @@ interface State {
     posts: any[]
 }
 
-const initialState:State= {
+const initialState= {
     mode: "light",
     user: null,
     token: null,
     posts: []
-
-}
+} as State
 
 export const authSlice = createSlice({
     name: "auth",
@@ -51,5 +51,5 @@ export const authSlice = createSlice({
 })
 
 export const { setPost, setPosts, setFriends, setLogout, setLogin, setMode } = authSlice.actions;
-
+export const selectRoot = (state: RootState ) => state.auth
 export default authSlice.reducer;
