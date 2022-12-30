@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
-import NavBar from './pages/NavBar';
+import NavBar from './pages/NavBar/NavBar';
 import ProfilePage from './pages/ProfilePage';
 import { useSelector } from "react-redux";
 import { CssBaseline, ThemeProvider } from "@mui/material";

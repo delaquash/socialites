@@ -1,19 +1,21 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from './store';
+import { useAppSelector } from "./hook";
 
 interface State {
     mode: string,
-    user:  any,
+    user:  any | null,
     token: string | null,
-    posts: any[]
+    posts: any
 }
 
-const initialState= {
+
+const initialState : State= {
     mode: "light",
     user: null,
     token: null,
     posts: []
-} as State
+}
 
 export const authSlice = createSlice({
     name: "auth",
@@ -42,14 +44,15 @@ export const authSlice = createSlice({
         },
         setPost: (state, action)=> {
             const updatedPost = state.posts.map((post: any) => {
-                if(post._id ===action.payload._id) return action.payload.post
+                if(post._id === action.payload._id) return action.payload.post
                 return post
-            })
-            state.posts = updatedPost
+            });
+            state.posts = updatedPost;
         }
     }
 })
 
 export const { setPost, setPosts, setFriends, setLogout, setLogin, setMode } = authSlice.actions;
 export const selectRoot = (state: RootState ) => state.auth
+export const useAuthDate = () => useAppSelector((state)=>state.auth.user)
 export default authSlice.reducer;
