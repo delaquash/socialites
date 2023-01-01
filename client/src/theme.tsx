@@ -1,3 +1,11 @@
+import { createTheme } from '@mui/material/styles';
+
+export interface colorTokens {
+  grey: string,
+  primary: string,
+  
+}
+
 // color design tokens export
 export const colorTokens = {
     grey: {
@@ -15,8 +23,9 @@ export const colorTokens = {
       900: "#0A0A0A",
       1000: "#000000",
     },
+
     primary: {
-      50: "#E6FBFF",
+      50:  "#E6FBFF",
       100: "#CCF7FE",
       200: "#99EEFD",
       300: "#66E6FC",
