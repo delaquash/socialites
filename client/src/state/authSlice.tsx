@@ -6,9 +6,8 @@ interface State {
     mode: string,
     user:  any | null,
     token: string | null,
-    posts: any
+    posts: Array<string|number>
 }
-
 
 const initialState : State= {
     mode: "light",
