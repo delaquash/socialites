@@ -1,13 +1,5 @@
 import { createTheme } from '@mui/material/styles';
 
-
-
-export interface colorTokens {
-  grey: string,
-  primary: string,
-
-}
-
 // color design tokens export
 export const colorTokens = {
     grey: {
