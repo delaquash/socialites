@@ -11,7 +11,7 @@ import { Theme, styled } from '@mui/material/styles';
 
 const index = () => {
   const [isMobileToggled, setIsMobileToggled] = useState(false);
-  const selector = useAppSelector((state)=> state.auth.user);
+  const user = useAppSelector((state)=> state.auth.user);
   const navigate = useNavigate();
   const dispatch =useDispatch();
   const isNonMobilScreen = useMediaQuery("(min-width: 1000px)");
@@ -23,8 +23,27 @@ const index = () => {
   const primaryLight = theme.palette.primary.light;
   const alt = theme.palette.background.alt;
 
+  const fullName = `${user.firstName} ${user.lastName}`;
+  
   return (
-    <div>index</div>
+    <FlexBetween padding="1rem 6%" sx={{backgroundColor: alt}}>
+        <FlexBetween gap="1.75rem">
+          <Typography
+              fontWeight="bold"
+              fontSize="clamp(1rem, 2rem, 2.35rem)"
+              color= "primary"
+              onClick={()=>navigate("/home")}
+              sx={{
+                "&:hover": {
+                  color: primaryLight,
+                  cursor: "pointer"
+                }
+              }} 
+          >
+            Sociopedia
+          </Typography>
+        </FlexBetween>
+    </FlexBetween>
   )
 }
 
