@@ -16,7 +16,9 @@ const index = () => {
   const dispatch =useDispatch();
   const isNonMobilScreen = useMediaQuery("(min-width: 1000px)");
 
-  const theme: { palette: { neutral: { light: any; dark: any; }; background: { default: any; alt: any; }; primary: { light: any; }; }; } = useTheme();
+  const theme: { palette: {
+    mode: string; neutral: { light: string; dark: string; }; background: { default: string; alt: string; }; primary: { light: string; }; 
+}; } = useTheme();
   const neutralLight = theme.palette.neutral.light;
   const dark = theme.palette.neutral.dark;
   const background = theme.palette.background.default;
@@ -42,6 +44,27 @@ const index = () => {
           >
             Sociopedia
           </Typography>
+          {isNonMobilScreen &&(
+            <FlexBetween 
+                sx={{backgroundColor: neutralLight}} 
+                borderRadius="9px" 
+                gap="3rem" 
+                padding="0.1rem 1.5rem">
+                  <InputBase placeholder='Search......'/>
+                  <IconButton>
+                    <Search />
+                  </IconButton>
+            </FlexBetween>
+            )}
+        </FlexBetween>
+
+        {/* Desktop Nav */}
+        <FlexBetween gap="2rem">
+          <IconButton onClick={()=>dispatch(setMode())}>
+              {theme.palette.mode === "dark" ? (
+                <DarkMode sx={{ fontSize: "25px"}} />
+              ): null}
+          </IconButton>
         </FlexBetween>
     </FlexBetween>
   )

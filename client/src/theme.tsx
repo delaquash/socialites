@@ -33,10 +33,10 @@ export const colorTokens = {
   };
 
 // mui theme settings
-export const themeSettings = (mode: any) => {
+export const themeSettings = (mode: string|any) =>  {
     return {
         palette: {
-            mode: mode,
+             mode: mode,
             ...mode(mode === "dark") ? {
                 // pallete values for dark mode
                 primary : {
