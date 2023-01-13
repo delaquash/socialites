@@ -4,7 +4,7 @@ import { useAppSelector } from "./hook";
 
 interface State {
     mode: string,
-    user:  any | null,
+    user:  any,
     token: string | null,
     posts: Array<string|number>
 }
