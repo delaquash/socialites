@@ -2,14 +2,14 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from './store';
 import { useAppSelector } from "./hook";
 
-interface State {
+interface iState {
     mode: string,
     user:  any,
     token: string | null,
     posts: Array<string|number>
 }
 
-const initialState : State= {
+const initialState : iState= {
     mode: "light",
     user: null,
     token: null,

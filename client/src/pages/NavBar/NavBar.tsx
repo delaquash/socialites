@@ -60,44 +60,55 @@ const index = () => {
         </FlexBetween>
 
         {/* Desktop Nav */}
-        <FlexBetween gap="2rem">
-          <IconButton onClick={()=>dispatch(setMode())}>
-              {theme.palette.mode === "dark" ? (
-                <DarkMode sx={{ fontSize: "25px"}} />
-              ): (
-                <LightMode sx={{ color: dark, fontSize: "25px" }} />
-              )}
-          </IconButton>
-          <Message sx={{ fontSize: "25px" }} />
-          <Notifications sx={{ fontSize: "25px" }} />
-          <Help sx={{ fontSize: "25px" }} />
-          <FormControl variant='standard' component={} value={fullName}>
-            <Select
-                value={fullName}
-                sx={{
-                  backgroundColor: neutralLight,
-                  width: "150px",
-                  borderRadius: "0.25rem",
-                  p: "0.25rem 1rem",
-                  "& .MuiSvgIcon-root:" {
-                    pr: "0.25rem",
-                    width: "3rem"
-                  },
-                  "& .MuiSelect-select:focus": {
-                    backgroundColor: neutralLight
-                  }
-                }}
-                input= {<InputBase />}
-            >
-              <MenuItem value={fullName}>
-                <Typography>
-                  {fullName}
-                </Typography>
-              </MenuItem>
-              <MenuItem onClick={()=> dispatch(setLogout())} />
-            </Select>
-          </FormControl>
-        </FlexBetween>
+      {isNonMobilScreen ? (
+      <FlexBetween gap="2rem">
+      <IconButton onClick={()=>dispatch(setMode())}>
+        {theme.palette.mode === "dark" ? (
+          <DarkMode sx={{ fontSize: "25px"}} />
+            ): (
+            <LightMode sx={{ color: dark, fontSize: "25px" }} />
+                )}
+              </IconButton>
+                <Message sx={{ fontSize: "25px" }} />
+                  <Notifications sx={{ fontSize: "25px" }} />
+                    <Help sx={{ fontSize: "25px" }} />
+                      <FormControl variant='standard' component={} value={fullName}>
+                      <Select
+                          value={fullName}
+                          sx={{
+                            backgroundColor: neutralLight,
+                            width: "150px",
+                            borderRadius: "0.25rem",
+                            p: "0.25rem 1rem",
+                            "& .MuiSvgIcon-root": {
+                              pr: "0.25rem",
+                              width: "3rem"
+                            },
+                            "& .MuiSelect-select:focus": {
+                              backgroundColor: neutralLight
+                            }
+                          }}
+                          input= {<InputBase />}>
+                            <MenuItem value={fullName}>
+                              <Typography>
+                                {fullName}
+                              </Typography>
+                            </MenuItem>
+                            <MenuItem onClick={()=> dispatch(setLogout())} />
+                          </Select>
+                        </FormControl>
+                        </FlexBetween>
+                        ) : (
+                          <IconButton
+                            onClick={()=>setIsMobileToggled(!setIsMobileToggled)}
+                          >
+                            <Menu />
+                          </IconButton>
+    )}
+       {/* MOBILE NAV */}
+  {!isNonMobilScreen && isMobileToggled && {
+
+  }}
     </FlexBetween>
   )
 }
