@@ -106,9 +106,28 @@ const index = () => {
                           </IconButton>
     )}
        {/* MOBILE NAV */}
-  {!isNonMobilScreen && isMobileToggled && {
-
-  }}
+  {!isNonMobilScreen && isMobileToggled && (
+    <Box
+        component={}
+        position="fixed"
+        right="0"
+        bottom="0"
+        height="100%"
+        zIndex="10"
+        maxWidth="500px"
+        minWidth="300px"
+        backgroundColor={background}
+    >
+      {/* Close Icon */}
+      <Box display="flex" justifyContent="flex-end" p="1rem">
+          <IconButton
+              onClick={() => setIsMobileToggled(!isMobileToggled)}
+          >
+            <Close />
+          </IconButton>
+      </Box>
+    </Box>
+  )}
     </FlexBetween>
   )
 }
