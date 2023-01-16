@@ -17,10 +17,10 @@ import Dropzone from "react-dropzone";
 import FlexBetween from "components/FlexBetween";
 
 const registerSchema = yup.object().shape({
-    firstName: yup.string().required(),
-    lastName: yup.string().required(),
-    password: yup.string().email("invalid email").required(),
-    email:yup.string().required(),
-    location: yup.string().required(),
-    occupation: yup.string().required(),
+    firstName: yup.string().required("required"),
+    lastName: yup.string().required("required"),
+    password: yup.string().email("invalid email").required("required"),
+    email:yup.string().required("required"),
+    location: yup.string().required("required"),
+    occupation: yup.string().required("required"),
 })
