@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage/HomePage';
-import LoginPage from './pages/LoginPage';
+import LoginPage from './pages/LoginPage/LoginPage';
 import ProfilePage from './pages/ProfilePage';
 import { useSelector } from "react-redux";
 import { CssBaseline, ThemeProvider } from "@mui/material";

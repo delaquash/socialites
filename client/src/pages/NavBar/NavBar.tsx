@@ -71,7 +71,7 @@ const NavBar = () => {
                 <Message sx={{ fontSize: "25px" }} />
                   <Notifications sx={{ fontSize: "25px" }} />
                     <Help sx={{ fontSize: "25px" }} />
-                      <FormControl variant='standard' component={} value={fullName}>
+                      <FormControl variant='standard' component={}  value={fullName}>
                       <Select
                           value={fullName}
                           sx={{

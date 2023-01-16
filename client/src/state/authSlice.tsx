@@ -53,5 +53,5 @@ export const authSlice = createSlice({
 
 export const { setPost, setPosts, setFriends, setLogout, setLogin, setMode } = authSlice.actions;
 export const selectRoot = (state: RootState ) => state.auth
-export const useAuthDate = () => useAppSelector((state)=>state.auth.user)
+
 export default authSlice.reducer;
