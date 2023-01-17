@@ -15,6 +15,7 @@ import * as yup from "yup";
 import { setLogin } from "state/authSlice";
 import Dropzone from "react-dropzone";
 import FlexBetween from "components/FlexBetween";
+import StringSchema from "yup/lib/string";
 
 const registerSchema = yup.object().shape({
     firstName: yup.string().required("required"),
@@ -24,3 +25,36 @@ const registerSchema = yup.object().shape({
     location: yup.string().required("required"),
     occupation: yup.string().required("required"),
 })
+
+interface initialValues {
+    firstName : string;
+    lastName: string;
+    password: string;
+    email: string;
+    location: string;
+    occupation: string;
+    picture: string
+}
+
+const initialRegisterValues: initialValues = {
+        firstName: "",
+        lastName: "",
+        password: "",
+        email: "",
+        location: "",
+        occupation: "",
+        picture:""
+}
+interface LoginValues {
+    email: string,
+    password: string
+}
+
+const loginValues: LoginValues = {
+    email: "",
+    password: ""
+}
+
+const Form = () => {
+    const [pageType, setPageType] = useState("login");
+}
