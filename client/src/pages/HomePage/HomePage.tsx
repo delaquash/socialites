@@ -1,4 +1,4 @@
-import NavBar from 'pages/NavBar/NavBar';
+import NavBar from '../NavBar/NavBar';
 
 const HomePage = () => {
   return (

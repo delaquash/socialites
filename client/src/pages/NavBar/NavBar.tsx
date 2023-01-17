@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Box, FormControl, IconButton, InputBase, MenuItem, Select, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { Close, DarkMode,Notifications, Help, LightMode, Menu, Message, Search } from "@mui/icons-material";
-import { setLogout, setMode } from 'state/authSlice';
+import { setLogout, setMode } from '../../state/authSlice';
 import { useNavigate } from 'react-router-dom';
-import FlexBetween from 'components/FlexBetween';
+import FlexBetween from '../../components/FlexBetween';
 import { useDispatch, useSelector } from 'react-redux';
-import { useAppSelector } from 'state/hook';
+import { useAppSelector } from '../../state/hook';
 
 
 
@@ -71,7 +71,10 @@ const NavBar = () => {
                 <Message sx={{ fontSize: "25px" }} />
                   <Notifications sx={{ fontSize: "25px" }} />
                     <Help sx={{ fontSize: "25px" }} />
-                      <FormControl variant='standard' component={}  value={fullName}>
+                      <FormControl 
+                          variant='standard'  
+                          value={fullName}
+                      >
                       <Select
                           value={fullName}
                           sx={{
@@ -107,15 +110,18 @@ const NavBar = () => {
        {/* MOBILE NAV */}
   {!isNonMobilScreen && isMobileToggled && (
     <Box
-        component={}
-        position="fixed"
-        right="0"
-        bottom="0"
-        height="100%"
-        zIndex="10"
-        maxWidth="500px"
-        minWidth="300px"
-        backgroundColor={background}
+        // component={box}
+        sx={{
+          position:"fixed",
+          right:"0",
+          bottom:"0",
+          height:"100%",
+          zIndex:"10",
+          maxWidth:"500px",
+          minWidth:"300px",
+          backgroundColor:{background}
+        }}
+       
     >
       {/* Close Icon */}
       <Box display="flex" justifyContent="flex-end" p="1rem">
@@ -137,7 +143,7 @@ const NavBar = () => {
                 <Message sx={{ fontSize: "25px" }} />
                   <Notifications sx={{ fontSize: "25px" }} />
                     <Help sx={{ fontSize: "25px" }} />
-                      <FormControl variant='standard' component={} value={fullName}>
+                      <FormControl variant='standard'  value={fullName}>
                       <Select
                           value={fullName}
                           sx={{

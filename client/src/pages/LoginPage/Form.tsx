@@ -57,4 +57,7 @@ const loginValues: LoginValues = {
 
 const Form = () => {
     const [pageType, setPageType] = useState("login");
+    const theme: { palette: {
+        mode: string; neutral: { light: string; dark: string; }; background: { default: string; alt: string; }; primary: { light: string; }; 
+    }; } = useTheme();
 }

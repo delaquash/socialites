@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from './store';
-import { useAppSelector } from "./hook";
+
 
 interface iState {
     mode: string,
