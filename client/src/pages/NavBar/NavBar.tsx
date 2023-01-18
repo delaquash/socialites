@@ -7,8 +7,6 @@ import FlexBetween from '../../components/FlexBetween';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAppSelector } from '../../state/hook';
 
-
-
 const NavBar = () => {
   const [isMobileToggled, setIsMobileToggled] = useState(false);
   const user = useAppSelector((state)=> state.auth.user);
@@ -120,8 +118,7 @@ const NavBar = () => {
           maxWidth:"500px",
           minWidth:"300px",
           backgroundColor:{background}
-        }}
-       
+        }}   
     >
       {/* Close Icon */}
       <Box display="flex" justifyContent="flex-end" p="1rem">
