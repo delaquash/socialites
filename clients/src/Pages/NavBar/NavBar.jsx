@@ -5,10 +5,10 @@ import { setLogout, setMode } from '../../state/authSlice';
 import { useNavigate } from 'react-router-dom';
 import FlexBetween from '../../components/FlexBetween';
 import { useDispatch, useSelector } from 'react-redux';
-import { useAppSelector } from '../../state/hook';
+
 
 const Navbar = () => {
-    const [isMobileToggled, setIsMobileToggled] = useState(false);
+    const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
     const navigate = useNavigate();
     const dispatch =useDispatch();
     const user = useSelector((state) => state.user);

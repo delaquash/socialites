@@ -15,7 +15,7 @@ const persistConfig = { key: "root", storage, version: 1};
 const persistedReducer =persistReducer(persistConfig, authReducers);
 const store = configureStore({
   reducer: persistedReducer,
-    middleware: (getDefaultMiddleware) => 
+    middleware: (getefaultMiddleware) => 
      getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, REGISTER, PAUSE, PERSIST, PURGE]
