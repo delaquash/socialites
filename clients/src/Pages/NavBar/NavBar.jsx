@@ -7,13 +7,13 @@ import FlexBetween from '../../components/FlexBetween';
 import { useDispatch, useSelector } from 'react-redux';
 
 
-const Navbar = () => {
+const NavBar = () => {
     const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
     const navigate = useNavigate();
     const dispatch =useDispatch();
     const user = useSelector((state) => state.user);
+    console.log(user)
     const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
-
   
     const theme = useTheme();
     const neutralLight = theme.palette.neutral.light;
@@ -22,7 +22,7 @@ const Navbar = () => {
     const primaryLight = theme.palette.primary.light;
     const alt = theme.palette.background.alt;
 
-    const fullName = `${user.firstName} ${user.lastName}`;
+    // const fullName = `${user.firstName} ${user.lastName}`;
     return (
         <FlexBetween padding="1rem 6%" backgroundColor={alt}>
           <FlexBetween gap="1.75rem">
@@ -68,9 +68,11 @@ const Navbar = () => {
               <Message sx={{ fontSize: "25px" }} />
               <Notifications sx={{ fontSize: "25px" }} />
               <Help sx={{ fontSize: "25px" }} />
-              <FormControl variant="standard" value={fullName}>
+              <FormControl variant="standard" 
+              // value={fullName}
+              >
                 <Select
-                  value={fullName}
+                  // value={fullName}
                   sx={{
                     backgroundColor: neutralLight,
                     width: "150px",
@@ -86,8 +88,12 @@ const Navbar = () => {
                   }}
                   input={<InputBase />}
                 >
-                  <MenuItem value={fullName}>
-                    <Typography>{fullName}</Typography>
+                  <MenuItem 
+                      // value={fullName}
+                  >
+                    <Typography>
+                      {/* {fullName} */}
+                    </Typography>
                   </MenuItem>
                   <MenuItem onClick={() => dispatch(setLogout())}>Log Out</MenuItem>
                 </Select>
@@ -143,9 +149,12 @@ const Navbar = () => {
                 <Message sx={{ fontSize: "25px" }} />
                 <Notifications sx={{ fontSize: "25px" }} />
                 <Help sx={{ fontSize: "25px" }} />
-                <FormControl variant="standard" value={fullName}>
+                <FormControl 
+                    variant="standard" 
+                    // value={fullName}
+                >
                   <Select
-                    value={fullName}
+                    // value={fullName}
                     sx={{
                       backgroundColor: neutralLight,
                       width: "150px",
@@ -161,8 +170,12 @@ const Navbar = () => {
                     }}
                     input={<InputBase />}
                   >
-                    <MenuItem value={fullName}>
-                      <Typography>{fullName}</Typography>
+                    <MenuItem 
+                        // value={fullName}
+                    >
+                      <Typography>
+                        {/* {fullName} */}
+                      </Typography>
                     </MenuItem>
                     <MenuItem onClick={() => dispatch(setLogout())}>
                       Log Out
@@ -176,4 +189,4 @@ const Navbar = () => {
       );
     };
     
- export default Navbar;
+ export default NavBar;
