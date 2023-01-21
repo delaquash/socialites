@@ -46,9 +46,26 @@ const loginSchema = yup.object().shape({
   };
 
 const Form = () => {
+  const { palette } = useTheme()
+  console.log(palette);
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const isMobileQuery = useMediaQuery("(min-width: 600px)");
+  const isLogin = pageType === "login";
+  const isRegister = pageType === "register"
+
+  const handleSubmit=(e)=> {
+    e.preventDefault()
+  }
   return (
-    <div>Form</div>
+    <Formik
+      onSubmit={handleSubmit}
+      initialValues={isLogin ? initialValuesLogin : initialValuesRegister}
+      validationSchema={isLogin ? loginSchema : registerSchema }
+    >
+
+    </Formik>
   )
 }
 
-export default Form
+export default Form;
