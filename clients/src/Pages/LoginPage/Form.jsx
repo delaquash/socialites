@@ -16,6 +16,7 @@ import { setLogin } from "state/authSlice";
 import Dropzone from "react-dropzone";
 import FlexBetween from "components/FlexBetween";
 
+// schema for registration
 const registerSchema = yup.object().shape({
     firstName: yup.string().required("Firstname is required").min(2, "Too Short!").max(50, "Too Long!"),
     lastName: yup.string().required("Lastname is required").min(2, "Too Short!").max(50, "Too Long!"),
@@ -25,11 +26,13 @@ const registerSchema = yup.object().shape({
     occupation: yup.string().required("Occupation is required").min(2, "Too Short!").max(50, "Too Long!"),
 });
 
+// login schema
 const loginSchema = yup.object().shape({
     email: yup.string().email("invalid email").required("Email is required").min(2, "Too Short!").max(50, "Too Long!"),
     password: yup.string().required("Password is required").min(2, "Too Short!").max(50, "Too Long!"),
   });
   
+  // values for registration
   const initialValuesRegister = {
     firstName: "",
     lastName: "",
@@ -40,6 +43,7 @@ const loginSchema = yup.object().shape({
     picture: "",
   };
   
+  // login values
   const initialValuesLogin = {
     email: "",
     password: "",
@@ -63,15 +67,6 @@ const Form = () => {
       initialValues={isLogin ? initialValuesLogin : initialValuesRegister}
       validationSchema={isLogin ? loginSchema : registerSchema }
     >
-      {/* (({values, 
-         errors, 
-         touched, 
-         handleBlur, 
-         handleChange, 
-         handleSubmit, 
-         setFieldValue, 
-         resetForm})
-         => ( */}
         {(formik) => {
         const {
           values,
@@ -92,6 +87,7 @@ const Form = () => {
                 "& > div": {gridColumn: isNonMobile ? undefined : "span 4"}
               }}
           >
+            {/* This is for register section */}
             {isRegister && (
               <>
               <TextField
@@ -169,6 +165,28 @@ const Form = () => {
                 </Box>
               </>
             )}
+            {/* This is for logging in */}
+            <TextField
+              label="Email"
+              onBlur={handleBlur}
+              onChange={handleChange}
+              value={values.email}
+              name="email"
+              error={Boolean(touched.email) && Boolean(touched.email)}
+              helperText={touched.email && errors.email}
+              sx={{ gridColumn: "span 4"}}
+            />
+            <TextField
+              label="Password"
+              type="password"
+              onBlur={handleBlur}
+              onChange={handleChange}
+              value={values.password}
+              name="password"
+              error={Boolean(touched.password) && Boolean(touched.password)}
+              helperText={touched.password && errors.password}
+              sx={{ gridColumn: "span 4"}}
+            />
           </Box>
         </Form>
         }}
