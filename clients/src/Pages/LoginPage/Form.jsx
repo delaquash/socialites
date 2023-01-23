@@ -7,14 +7,14 @@ import {
      useTheme 
 } from "@mui/material";
 import { useState } from "react";
-import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import { Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import * as yup from "yup";
-import { setLogin } from "state/authSlice";
+// import { setLogin } from "state/authSlice";
 import Dropzone from "react-dropzone";
-import FlexBetween from "components/FlexBetween";
+import FlexBetween from "../../components/FlexBetween";
+
 
 // schema for registration
 const registerSchema = yup.object().shape({
@@ -50,16 +50,39 @@ const loginSchema = yup.object().shape({
   };
 
 const Form = () => {
+  const [pageType, setPageType] = useState("login")
   const { palette } = useTheme()
-  console.log(palette);
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const isMobileQuery = useMediaQuery("(min-width: 600px)");
+  const isNonMobile = useMediaQuery("(min-width: 600px)");
   const isLogin = pageType === "login";
-  const isRegister = pageType === "register"
+  const isRegister = pageType === "register";
 
-  const handleSubmit=(e, values, onSubmitProps)=> {
+
+  // register function
+  const register = async (values, onSubmitProps) => {
+    // formData api allows us to send form info and images together
+    const formData = new formData()
+    for(let value in values){
+      formData.append(value, values[value])
+    }
+    formData.append("picturePath", values.picture.name);
+    const saveUserResponse = await axios("http://localhost:5000/auth/register",
+    {
+      method: "POST",
+      body: formData
+    })
+    const savedUser = await saveUserResponse.json();
+    onSubmitProps.resetFrom()
+    if(savedUser){
+      setPageType("login")
+    }
+  }
+
+  const handleSubmit=async(e, values, onSubmitProps)=> {
     e.preventDefault()
+    if(isLogin) await login(values, onSubmitProps);
+    if(isRegister) await register(values, onSubmitProps)
   }
   return (
     <Formik
@@ -187,6 +210,38 @@ const Form = () => {
               helperText={touched.password && errors.password}
               sx={{ gridColumn: "span 4"}}
             />
+            </Box>
+            {/* buttons */}
+            <Box>
+              <Button
+                  fullWidth
+                  type="submit"
+                  sx={{
+                    m: "2rem 0",
+                    p: "1rem",
+                    backgroundColor: palette.primary.main,
+                    color: palette.background.alt,
+                    "$:hover": {color: palette.primary.main}
+                  }}
+              >
+                {isLogin ? "LOGIN" : "REGISTER" }
+              </Button>
+              <Typography
+                  onClick={() => {
+                    setPageType(isLogin ? "register" : "login");
+                    resetFrom()
+                  }}
+              sx={{
+                textDecoration: "underline",
+                color: palette.primary.main,
+                "$:hover": {
+                  cursor: "pointer",
+                  color: palette.primary.main
+                }
+              }}
+              >
+                {isLogin ? "Dont't have an account yet? Kindly sign up here..." : "Already have an account? Log in here...."}
+              </Typography>
           </Box>
         </Form>
         }}

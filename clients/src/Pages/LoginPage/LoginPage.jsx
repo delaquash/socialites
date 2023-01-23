@@ -1,5 +1,6 @@
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
-import Form from "./Form.jsx";
+import Form from "./Form";
+// import Form from "./Form.jxs";
 
 const LoginPage = () => {
     const theme = useTheme();
