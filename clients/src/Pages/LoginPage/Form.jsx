@@ -14,6 +14,7 @@ import * as yup from "yup";
 // import { setLogin } from "state/authSlice";
 import Dropzone from "react-dropzone";
 import FlexBetween from "../../components/FlexBetween";
+import axios from "axios";
 
 
 // schema for registration
@@ -73,10 +74,21 @@ const Form = () => {
       body: formData
     })
     const savedUser = await saveUserResponse.json();
-    onSubmitProps.resetFrom()
+    onSubmitProps.resetForm()
     if(savedUser){
       setPageType("login")
     }
+  }
+
+    // login function
+    const login = async (values, onSubmitProps) => {
+      const loggedInResponse = await axios("http://localhost:5000/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json"},
+        body: JSON.stringify(values)
+      })
+      const loggedIn = await loggedInResponse.json()
+      onSubmitProps.resetForm()
   }
 
   const handleSubmit=async(e, values, onSubmitProps)=> {
