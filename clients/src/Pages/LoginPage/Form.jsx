@@ -11,10 +11,10 @@ import { Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import * as yup from "yup";
-// import { setLogin } from "state/authSlice";
 import Dropzone from "react-dropzone";
 import FlexBetween from "../../components/FlexBetween";
 import axios from "axios";
+import { setLogin } from "../../state/authSlice";
 
 
 // schema for registration
@@ -88,7 +88,14 @@ const Form = () => {
         body: JSON.stringify(values)
       })
       const loggedIn = await loggedInResponse.json()
-      onSubmitProps.resetForm()
+      onSubmitProps.resetForm();
+      if(loggedIn){
+        dispatch(setLogin({
+          user: loggedIn.user,
+          token: loggedIn.token
+        }))
+        navigate("/home")
+      }
   }
 
   const handleSubmit=async(e, values, onSubmitProps)=> {
