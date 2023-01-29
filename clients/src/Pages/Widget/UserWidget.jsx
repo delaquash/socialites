@@ -35,10 +35,50 @@ const UserWidget = ({ userId, picturePath }) => {
     useEffect(()=> {
         getUser()
     }, [])
+
+    if(!user){
+        return null
+    }
+
+    const { firstName, 
+            lastNmae, 
+            location, 
+            occupation, 
+            viewedProfile, 
+            impressions, 
+            friends 
+        } = user;
+
         return (
-            <div>
-                
-            </div>
+            <WidgetWrapper>
+                <FlexBetween
+                    gap="0.5rem"
+                    pb="1.1rem"
+                    onClick={()=> navigate(`/profile/${userId}`)}
+                >
+                    <FlexBetween gap="1rem">
+                        <UserImage image={picturePath}/>
+                        <Box>
+                            <Typography
+                                variant="h4"
+                                fontWeight="500"
+                                color={dark}
+                                sx={{
+                                    "&:hover": {
+                                        color: palette.primary.light,
+                                        cursor: "pointer"
+                                    }
+                                }}
+                            >
+                                {firstName} {lastName}
+                            </Typography>
+                            <Typography color={medium}>{friends.length} friends</Typography>
+                        </Box>
+                        <ManageAccountsOutlined />
+                    </FlexBetween>
+
+                </FlexBetween>
+            </WidgetWrapper>
         )
 }
 
