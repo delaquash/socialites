@@ -15,7 +15,7 @@ import axios from "axios";
 
 const UserWidget = ({ userId, picturePath }) => {
     const [user, setUser] = useState(null)
-    const { paletter } = useTheme();
+    const { palette } = useTheme();
     const navigate = useNavigate();
     const token = useSelector((state)=> state.token);
     const dark = palette.neutral.dark;
@@ -23,11 +23,23 @@ const UserWidget = ({ userId, picturePath }) => {
     const main = palette.neutral.main;
 
     const getUser = async () => {
-        const getUserResponse = await axios(`http://localhost:5000/users/${userId}`)
+        const getUserResponse = await axios(`http://localhost:5000/users/${userId}`, {
+            method: "GET",
+            headers: {Autorization: `Bearer ${token}`},
+
+        })
+        const data = await getUserResponse.json()
+        setUser(data)
     }
-  return (
-    <div>UserWidget</div>
-  )
+
+    useEffect(()=> {
+        getUser()
+    }, [])
+        return (
+            <div>
+                
+            </div>
+        )
 }
 
 export default UserWidget
