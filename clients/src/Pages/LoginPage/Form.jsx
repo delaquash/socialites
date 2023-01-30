@@ -21,7 +21,7 @@ import { setLogin } from "../../state/authSlice";
 const registerSchema = yup.object().shape({
     firstName: yup.string().required("Firstname is required").min(2, "Too Short!").max(50, "Too Long!"),
     lastName: yup.string().required("Lastname is required").min(2, "Too Short!").max(50, "Too Long!"),
-    password: yup.string().required("Invalid password").required("Password is required"),
+    password: yup.string().required("Password is required").min(2, "Too Short!").max(50, "Too Long!"),
     email:yup.string().required("Email is required").min(2, "Too Short!").max(50, "Too Long!"),
     location: yup.string().required("Location is required").min(2, "Too Short!").max(50, "Too Long!"),
     occupation: yup.string().required("Occupation is required").min(2, "Too Short!").max(50, "Too Long!"),
@@ -29,7 +29,7 @@ const registerSchema = yup.object().shape({
 
 // login schema
 const loginSchema = yup.object().shape({
-    email: yup.string().email("invalid email").required("Email is required").min(2, "Too Short!").max(50, "Too Long!"),
+    email: yup.string().email("Invalid email").required("Email is required").min(2, "Too Short!").max(50, "Too Long!"),
     password: yup.string().required("Password is required").min(2, "Too Short!").max(50, "Too Long!"),
   });
   
