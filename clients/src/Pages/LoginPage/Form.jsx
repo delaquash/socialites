@@ -15,6 +15,7 @@ import Dropzone from "react-dropzone";
 import FlexBetween from "../../components/FlexBetween";
 import axios from "axios";
 import { setLogin } from "../../state/authSlice";
+import { EditOutlined } from "@mui/icons-material";
 
 
 // schema for registration
@@ -63,7 +64,7 @@ const Form = () => {
   // register function
   const register = async (values, onSubmitProps) => {
     // formData api allows us to send form info and images together
-    const formData = new formData()
+    const formData = new FormData()
     for(let value in values){
       formData.append(value, values[value])
     }
@@ -98,8 +99,8 @@ const Form = () => {
       }
   }
 
-  const handleFormSubmit=async(e, values, onSubmitProps)=> {
-    e.preventDefault()
+  const handleFormSubmit=async(values, onSubmitProps)=> {
+    // e.preventDefault()
     if(isLogin) await login(values, onSubmitProps);
     if(isRegister) await register(values, onSubmitProps)
   }
@@ -200,7 +201,7 @@ const Form = () => {
                       ) : (
                         <FlexBetween>
                           <Typography>{values.picture.name}</Typography>
-                          <EditOutlinedIcon />
+                          <EditOutlined />
                         </FlexBetween>
                       )}
                     </Box>
