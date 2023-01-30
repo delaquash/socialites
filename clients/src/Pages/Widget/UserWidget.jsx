@@ -100,12 +100,33 @@ const UserWidget = ({ userId, picturePath }) => {
                             </FlexBetween>
                         </Box>
                         {/* Fourth Row */}
-                        <Box p="1rem">
-                            <Typography></Typography>
+                        <Box p="1rem 0">
+                            <Typography  fontSize="1rem" color={main} mb="1rem" fontWeight="500">Social Profiles</Typography>
+                            <FlexBetween gap="1rem" mb="0.5rem">
+                                <FlexBetween gap="1rem">
+                                    <img src="../../assets/twitter.png" alt="Twitter" />
+                                    <Box>
+                                        <Typography color={main} fontWeight="500">Twitter</Typography>
+                                        <Typography color={medium}>Social Networks</Typography>
+                                    </Box>
+                                </FlexBetween>
+                                <EditOutlined sx={{ color: main }} />
+                            </FlexBetween>
+
+                            <FlexBetween gap="1rem">
+                                <FlexBetween gap="1rem">
+                                    <img src="../../assets/linkedin.png" alt="linkedin" />
+                                    <Box>
+                                        <Typography color={main} fontWeight="500">LinkedIN</Typography>
+                                        <Typography color={medium}> Network Platform</Typography>
+                                    </Box>
+                                </FlexBetween>
+                                <EditOutlined sx={{ color: main }} />
+                            </FlexBetween>
                         </Box>
                 </FlexBetween>
             </WidgetWrapper>
         )
 }
 
-export default UserWidget
+export default UserWidget;
