@@ -8,10 +8,10 @@ const UserImage = ({image, size= "60px"}) => {
             width={size}
             height={size}
             alt="user"
-            src={`http://localhost:5000/assets/${image}`}
+            src={`http://localhost:5000/public/assets/${image}`}
         />
     </Box>
   )
 }
 
-export default UserImage
+export default UserImage;

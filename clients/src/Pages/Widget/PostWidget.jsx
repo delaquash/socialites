@@ -58,7 +58,69 @@ const PostWidget = ({ picturePath }) => {
     }
 
   return (
-    <div>PostWidget</div>
+    <WidgetWrapper>
+      <FlexBetween>
+        <UserImage image={picturePath} />
+        <InputBase 
+            placeholder="What is on your mind..."
+            onChange={(e)=> setPost(e.target.value)}
+            value={post}
+            sx={{
+              width: "100%",
+              backgroundColor: palette.neutral.light,
+              borderRadius: "2rem",
+              padding: "1rem 2rem"
+            }}
+        />
+      </FlexBetween>
+      {isImage && (
+        <Box
+            border={`1px solid ${medium}`}
+            borderRadius="5px"
+            mt="1rem"
+            p="1rem"
+        >
+          <Dropzone
+                  acceptedFiles=".jpg,.jpeg,.png"
+                  multiple={false}
+                  onDrop={(acceptedFiles) =>
+                    setImage( acceptedFiles[0])
+                  }
+                >
+                  {({ getRootProps, getInputProps }) => (
+                    <FlexBetween>
+                       <Box
+                      {...getRootProps()}
+                      border={`2px dashed ${palette.primary.main}`}
+                      p="1rem"
+                      width="100%"
+                      sx={{ "&:hover": { cursor: "pointer" } }}
+                    >
+                      <input {...getInputProps()} />
+                      {!image.picture ? (
+                        <p>Add Image Here</p>
+                      ) : (
+                        <FlexBetween>
+                          <Typography>{image.name}</Typography>
+                          <EditOutlined />
+                        </FlexBetween>
+                      )}
+                    </Box>
+                    {image && (
+                      <IconButton
+                          onClick={()=>setImage(null)}
+                          sx={{ width: "15%" }}
+                      >
+                        <DeleteOutline />
+                      </IconButton>
+                    )}
+                    </FlexBetween>
+                  )}
+                </Dropzone>
+        </Box>
+        
+      )}
+    </WidgetWrapper>
   )
 }
 
