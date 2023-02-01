@@ -13,13 +13,13 @@ import { useDispatch } from "react-redux";
 import * as yup from "yup";
 import Dropzone from "react-dropzone";
 import FlexBetween from "../../components/FlexBetween";
-import axios from "axios";
 import { setLogin } from "../../state/authSlice";
 import { EditOutlined } from "@mui/icons-material";
 
 
 // schema for registration
 const registerSchema = yup.object().shape({
+
     firstName: yup.string().required("Firstname is required").min(2, "Too Short!").max(50, "Too Long!"),
     lastName: yup.string().required("Lastname is required").min(2, "Too Short!").max(50, "Too Long!"),
     password: yup.string().required("Password is required").min(2, "Too Short!").max(50, "Too Long!"),
@@ -59,17 +59,18 @@ const Form = () => {
   const isNonMobile = useMediaQuery("(min-width: 600px)");
   const isLogin = pageType === "login";
   const isRegister = pageType === "register";
-
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDdlNjA3ZmJmODI3YzgxOWE5MzYwYiIsImlhdCI6MTY3NTI0ODkyOX0.CbtwpQQFGqBq7ZhV8HdOYG8qB_gGRzTrTSN8_f67q0w"
 
   // register function
   const register = async (values, onSubmitProps) => {
-    // formData api allows us to send form info and images together
+    try {
+       // formData api allows us to send form info and images together
     const formData = new FormData()
     for(let value in values){
       formData.append(value, values[value])
     }
     formData.append("picturePath", values.picture.name);
-    const saveUserResponse = await axios("http://localhost:5000/auth/register",
+    const saveUserResponse = await fetch("http://localhost:5000/auth/register",
     {
       method: "POST",
       body: formData
@@ -79,13 +80,16 @@ const Form = () => {
     if(savedUser){
       setPageType("login")
     }
-  }
+    } catch (error) {
+      console.log(error.savedUser.data)
+    }
+    }
 
     // login function
     const login = async (values, onSubmitProps) => {
-      const loggedInResponse = await axios("http://localhost:5000/auth/register", {
+      const loggedInResponse = await fetch("http://localhost:5000/auth/login", {
         method: "POST",
-        headers: { "Content-Type": "application/json"},
+        headers: { "Content-Type": "application/json", 'Authorization': `Bearer ${token}`},
         body: JSON.stringify(values)
       })
       const loggedIn = await loggedInResponse.json()
