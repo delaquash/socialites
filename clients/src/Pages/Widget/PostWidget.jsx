@@ -27,8 +27,8 @@ import { setPosts } from "../../state/authSlice";
 
 const PostWidget = ({ picturePath }) => {
     const [post, setPost] = useState("")
-    const [image, setImage] = useState(false)
-    const [isImage, setIsImage] = useState(null)
+    const [image, setImage] = useState(null)
+    const [isImage, setIsImage] = useState(false)
     const dispatch = useDispatch();
     const { palette } = useTheme();
     const { _id } = useSelector((state)=> state.user);
@@ -36,6 +36,26 @@ const PostWidget = ({ picturePath }) => {
     const isNonMobileScreen = useMediaQuery("(min-width: 1000px)");
     const medium = palette.neutral.medium
     const mediumMain = palette.neutral.mediumMain
+
+    const handlePost= async() => {
+      const formData = new FormData()
+      formData.append("userId", _id);
+      formData.append("description", post);
+      if(image){
+        formData.append("picture", image);
+        formData.append("picturePath", image.name);
+      }
+      const res = await fetch (`http://localhost:5000/post`, {
+        method: "POST",
+        body: formData,
+        headers: { Authorization: `Bearer${token}`}
+      })
+      const post = res.json()
+      /* Dispatching the action `setPost` with the payload `{ post }` */
+      dispatch(setPost({ post }))
+      setImage(null)
+      setPost("")
+    }
 
   return (
     <div>PostWidget</div>
