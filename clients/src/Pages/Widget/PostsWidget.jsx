@@ -6,6 +6,7 @@ import PostWidget from "./PostWidget";
 const PostsWidget = ({userId, isProfile= false}) => {
     const dispatch = useDispatch();
     const posts = useSelector((state)=> state.posts);
+    console.log(posts);
     const token = useSelector((state)=> state.token);
 
     const getPosts = async() => {
@@ -36,7 +37,32 @@ const PostsWidget = ({userId, isProfile= false}) => {
     }, [])
 
   return (
-    <div>PostsWidget</div>
+    <>
+      {posts.map(({_id,
+           firstName, 
+           lastName, 
+           userId,
+           description,
+           location,
+           picturePath,
+           userPicturePath,
+           likes,
+           comment
+           })=> (
+            <PostWidget 
+            key={_id}
+            postId={_id}
+            postUserId={userId}
+            name={`${firstName} ${lastName}`}
+            description={description}
+            location={location}
+            picturePath={picturePath}
+            userPicturePath={userPicturePath}
+            likes={likes}
+            comment={comment}
+            />
+           ))}
+    </>
   )
 }
 

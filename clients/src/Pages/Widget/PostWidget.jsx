@@ -32,7 +32,7 @@ const PostWidget = ({ picturePath }) => {
     const dispatch = useDispatch();
     const { palette } = useTheme();
     const { _id } = useSelector((state)=> state.user);
-    const { token } = useSelector((state)=> state.token);
+    const  token  = useSelector((state)=> state.token);
     const isNonMobileScreen = useMediaQuery("(min-width: 1000px)");
     const medium = palette.neutral.medium
     const mediumMain = palette.neutral.mediumMain
