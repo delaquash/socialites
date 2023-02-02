@@ -50,7 +50,7 @@ const PostWidget = ({ picturePath }) => {
         body: formData,
         headers: { Authorization: `Bearer${token}`}
       })
-      const post = res.json()
+      const post =await res.json()
       /* Dispatching the action `setPost` with the payload `{ post }` */
       dispatch(setPost({ post }))
       setImage(null)
@@ -131,9 +131,42 @@ const PostWidget = ({ picturePath }) => {
               Image
             </Typography>
         </FlexBetween>
+        {isNonMobileScreen ? (
+          <>
+            <FlexBetween gap="0.25rem">
+              <GifBoxOutlined sx={{ color: mediumMain }}/>
+              <Typography color={mediumMain}>Clif</Typography>
+            </FlexBetween>
+
+            <FlexBetween gap="0.25rem">
+              <AttachFileOutlined sx={{ color: mediumMain }}/>
+              <Typography color={mediumMain}>Attachment</Typography>
+            </FlexBetween>
+
+            <FlexBetween gap="0.25rem">
+              <MicOutlined sx={{ color: mediumMain }}/>
+              <Typography color={mediumMain}>Audio</Typography>            
+            </FlexBetween>
+          </>
+        ): (
+          <FlexBetween gap="0.25rem">
+            <MoreHorizOutlined sx={{ color: mediumMain }}/>
+          </FlexBetween>
+        )}
+        <Button
+          disabled={!post}
+          onClick={handlePost}
+          sx={{
+            color: palette.background.alt,
+            backgroundColor: palette.primary.main,
+            borderRadius: "3rem" 
+          }}
+        >
+          POST
+        </Button>
       </FlexBetween>
     </WidgetWrapper>
   )
 }
 
-export default PostWidget
+export default PostWidget;

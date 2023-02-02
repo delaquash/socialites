@@ -14,7 +14,8 @@ import * as yup from "yup";
 import Dropzone from "react-dropzone";
 import FlexBetween from "../../components/FlexBetween";
 import { setLogin } from "../../state/authSlice";
-import { EditOutlinedIcon } from "@mui/icons-material";
+// import { EditOutlinedIcon } from "@mui/icons-material";
+import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 
 
 // schema for registration
@@ -205,7 +206,8 @@ const Form = () => {
                       ) : (
                         <FlexBetween>
                           <Typography>{values.picture.name}</Typography>
-                          <EditOutlinedIcon />
+                          {/* <EditOutlinedIcon /> */}
+                          <ModeEditOutlineIcon />
                         </FlexBetween>
                       )}
                     </Box>
