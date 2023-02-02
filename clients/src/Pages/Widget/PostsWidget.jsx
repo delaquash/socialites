@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "../../state/authSlice";
 import PostWidget from "./PostWidget";
 
-
 const PostsWidget = ({userId, isProfile= false}) => {
     const dispatch = useDispatch();
     const posts = useSelector((state)=> state.posts);
@@ -18,6 +17,23 @@ const PostsWidget = ({userId, isProfile= false}) => {
         /* Dispatching the action setPosts to the reducer. */
         dispatch(setPosts({ posts: data }))
     }
+
+    const getUserPosts = async() => {
+      const response = await fetch (`http://localhost:5000/post/${userId}/posts`, {
+        method: "GET",
+        headers: { Authorization : `Bearer ${token}`}
+      })
+      const userResponse = await response.json()
+      dispatch(setPosts({ posts: userResponse }))
+    }
+
+    useEffect(()=> {
+      if(isProfile){
+        getUserPosts()
+      } else {
+        getPosts()
+      }
+    }, [])
 
   return (
     <div>PostsWidget</div>
