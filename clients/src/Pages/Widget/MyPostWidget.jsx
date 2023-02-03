@@ -33,11 +33,54 @@ const MyPostWidget = ({
     const likedCount = Object.keys(likes).length
     const main = palette.neutral.main;
     const primary= palette.primary.main;
-    
+
+    const patchLike = async() =>{
+        const patchRes = await fetch(`http://localhost:5000/post/${postId}/like`, {
+            method: "PATCH",
+            headers: { 
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ userId: loggedInUserId })
+        })
+        const patchData = await patchRes.json();
+        dispatch(setPost({ post: patchData }));
+    }
+
   return (
-    <div>
-        MyPostWidget
-    </div>
+    <WidgetWrapper m="2rem 0">
+        <Friend 
+            friendId={postUserId}
+            name={name}
+            subtitle={location}
+            userPicturePath={userPicturePath}
+        />
+        <Typography color={main} sx={{ mt: "1rem"}}>
+            {description}
+        </Typography>
+        {picturePath && (
+            <img
+                width="100%"
+                height="auto"
+                alt="post"
+                style={{ marginTop: "0.75rem", borderRadius: "0.75rem" }}
+                src={`http://localhost:5000/assets/${picturePath}`}
+            />
+        )}
+        <FlexBetween mt="0.25rem">
+            <FlexBetween gap="1rem">
+                <FlexBetween gap="0.3rem">
+                    <IconButton onClick={patchLike}>
+                        {isLiked ? (
+                            <FavoriteOutlined sx={{ color: primary }} />
+                        ): <FavoriteBorderOutlined />}
+                    </IconButton>
+                    <Typography>{likedCount}</Typography>
+                </FlexBetween>
+                
+            </FlexBetween>
+        </FlexBetween>
+    </WidgetWrapper>
   )
 }
 
