@@ -1,7 +1,7 @@
 import { 
     AttachFileOutlined,
     DeleteOutline,
-    EditOffOutlined,
+    EditOutlined,
     GifBoxOutlined,
     ImageOutlined,
     MicOutlined,
@@ -97,7 +97,7 @@ const PostWidget = ({ picturePath }) => {
                       sx={{ "&:hover": { cursor: "pointer" } }}
                     >
                       <input {...getInputProps()} />
-                      {!image.picture ? (
+                      {!image ? (
                         <p>Add Image Here</p>
                       ) : (
                         <FlexBetween>

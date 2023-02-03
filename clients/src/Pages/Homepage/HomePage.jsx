@@ -3,6 +3,7 @@ import Navbar from '../NavBar/Navbar.jsx';
 import { Box, useMediaQuery } from '@mui/material';
 import UserWidget from '../Widget/UserWidget.jsx';
 import PostWidget from '../Widget/PostWidget.jsx';
+import PostsWidget from '../Widget/PostsWidget.jsx';
 
 const Homepage = () => {
   const isNonMobileScreen = useMediaQuery("(min-width: 1000px)")
@@ -26,6 +27,7 @@ const Homepage = () => {
           mt={isNonMobileScreen ? undefined : "2rem"}  
         >
           <PostWidget picturePath={picturePath} />
+          <PostsWidget userId={_id} />
         </Box>
         {isNonMobileScreen && (
           <Box flexBasis="26%"></Box>
