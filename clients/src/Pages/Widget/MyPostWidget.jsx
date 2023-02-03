@@ -88,7 +88,7 @@ const MyPostWidget = ({
                 <ShareOutlined />
             </IconButton>
         </FlexBetween>
-        {isComments && (
+        {isComment && (
             <Box mt="0.5rem">
                 {comment.map((comment, i)=>(
                     <Box key={`${name}-${i}`}>

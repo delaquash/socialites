@@ -1,10 +1,12 @@
 import { PersonAddOutlined, PersonRemoveOutlined } from "@mui/icons-material";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import FlexBetween from "../../components/FlexBetween";
 import UserImage from "../../Components/UserImage";
 import { setFriends } from "../../state/authSlice";
 import { useNavigate } from "react-router-dom";
+import FlexBetween from "../../Components/FlexBetween";
+
+
 
 
 const Friend = ({ friendId, name, userpicturePath,subtitle }) => {
