@@ -4,7 +4,6 @@ import { Box, useMediaQuery } from '@mui/material';
 import UserWidget from '../Widget/UserWidget.jsx';
 import PostWidget from '../Widget/PostWidget.jsx';
 
-
 const Homepage = () => {
   const isNonMobileScreen = useMediaQuery("(min-width: 1000px)")
   const { _id, picturePath }= useSelector((state)=> state.user);

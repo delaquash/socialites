@@ -14,7 +14,7 @@ export const createPost = async(req, res) => {
             description,
             picturePath,
             likes: [],
-            comment: [],
+            comments: [],
         });
         await newPost.save();
         const post = await Post.find();
