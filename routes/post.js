@@ -11,4 +11,4 @@ router.get("/:userId/post", verifyToken, getUserPost);
 // update
 router.patch("/:id/like", verifyToken, likePost);
 
-export default router
+export default router;

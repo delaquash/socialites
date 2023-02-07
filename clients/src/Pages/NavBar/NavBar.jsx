@@ -22,7 +22,7 @@ const NavBar = () => {
     const primaryLight = theme.palette.primary.light;
     const alt = theme.palette.background.alt;
 
-    // const fullName = `${user.firstName} ${user.lastName}`;
+    const fullName = `${user.firstName} ${user.lastName}`;
     return (
         <FlexBetween padding="1rem 6%" backgroundColor={alt}>
           <FlexBetween gap="1.75rem">
@@ -69,10 +69,10 @@ const NavBar = () => {
               <Notifications sx={{ fontSize: "25px" }} />
               <Help sx={{ fontSize: "25px" }} />
               <FormControl variant="standard" 
-              // value={fullName}
+              value={fullName}
               >
                 <Select
-                  // value={fullName}
+                  value={fullName}
                   sx={{
                     backgroundColor: neutralLight,
                     width: "150px",
@@ -89,10 +89,10 @@ const NavBar = () => {
                   input={<InputBase />}
                 >
                   <MenuItem 
-                      // value={fullName}
+                      value={fullName}
                   >
                     <Typography>
-                      {/* {fullName} */}
+                      {fullName}
                     </Typography>
                   </MenuItem>
                   <MenuItem onClick={() => dispatch(setLogout())}>Log Out</MenuItem>
@@ -151,10 +151,10 @@ const NavBar = () => {
                 <Help sx={{ fontSize: "25px" }} />
                 <FormControl 
                     variant="standard" 
-                    // value={fullName}
+                    value={fullName}
                 >
                   <Select
-                    // value={fullName}
+                    value={fullName}
                     sx={{
                       backgroundColor: neutralLight,
                       width: "150px",
@@ -171,10 +171,10 @@ const NavBar = () => {
                     input={<InputBase />}
                   >
                     <MenuItem 
-                        // value={fullName}
+                        value={fullName}
                     >
                       <Typography>
-                        {/* {fullName} */}
+                        {fullName}
                       </Typography>
                     </MenuItem>
                     <MenuItem onClick={() => dispatch(setLogout())}>
