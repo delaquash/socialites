@@ -45,11 +45,12 @@ const PostWidget = ({ picturePath }) => {
         formData.append("picture", image);
         formData.append("picturePath", image.name);
       }
-      const res = await fetch (`http://localhost:5000/post`, {
+      const res = await fetch ("http://localhost:5000/post", {
         method: "POST",
         body: formData,
-        headers: { Authorization: `Bearer${token}`}
+        headers: { Authorization: `Bearer ${token}`}
       })
+      console.log(res);
       const post =await res.json()
       /* Dispatching the action `setPost` with the payload `{ post }` */
       dispatch(setPost({ post }))

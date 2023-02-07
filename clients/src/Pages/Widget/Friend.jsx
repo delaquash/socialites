@@ -16,7 +16,6 @@ const Friend = ({ friendId, name, userpicturePath,subtitle }) => {
     const primaryLight = palette.primary.light;
     const  primaryDark = palette.primary.dark;
     const main = palette.primary.main;
-    const mediumMain = palette.primary.mediumMain;
 
     const isFriend = friends.find((friend)=>friend._id === friendId)
     const patchFriend = async() => {

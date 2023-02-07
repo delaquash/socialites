@@ -46,7 +46,7 @@ app.post("/post", verifyToken, upload.single("picture"), createPost);
 // routes
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
-app.use("/routes", postRoutes);
+app.use("/post", postRoutes);
 
 // ADD DATA ONE TIME
 // User.insertMany(users)
